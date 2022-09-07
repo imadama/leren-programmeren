@@ -1,8 +1,7 @@
-from http.client import OK
 
 croissant =  input("Hoeveel croissant's:")
 stokbrood =  input("Hoeveel stokbrood:")
 kortingsbonnen=  input("Hoeveel coupons:")
-kosten =  ((int (croissant)*2)+(int (stokbrood)*2)-(int (kortingsbonnen)*5))
+kosten =  ((float (croissant)*2)+(float (stokbrood)*2)-(float (kortingsbonnen)*5))
 
 print ("De feestlunch kost je {} euro". format (kosten))
