@@ -11,3 +11,8 @@ elif a < b:
 
 else :
     print("a en b zijn even groot")
+    max = a
+    min = b
+
+print ("Het minimum is:{}". format (max))
+print ("Het maximum is:{}". format (min))
