@@ -1,8 +1,14 @@
 #Vacature: Circusdirecteur voor Circus HotelDeBotel
 
 
-print("U gaat een sollicitatie invullen")
+from tokenize import Name
 
+
+print("U gaat een sollicitatie invullen")
+naam = input("Wat is uw naam?")
+print ("Welkom, " +naam+ "!")
+if naam == "Damian":
+    raise NameError("Damian jij mag hier niet komen werken!")
 geslacht = input("Bent u een man of vrouw? ")
 if geslacht == "man":
     snor = int(input("Hoelang is uw snor? Antwoord in centimeters. Als u geen snor heeft, antwoord dan met 0. "))
@@ -10,11 +16,15 @@ elif geslacht == "vrouw":
     roodkrulhaar = int(input("Hoelang is uw rood krulhaar? Antwoord in centimeters. Als u geen rood krulhaar heeft, antwoord dan met 0. "))
 
 
-lengte = int(input("Hoelang bent u in centimeters? "))
+lengte = int(input("Hoelang bent u in centimeters? "))    
 gewicht = int(input("Hoe zwaar weegt u in kilogram? "))
-input("hoe oud bent u? ")
+leeftijd = input("hoe oud bent u? ")
+if leeftijd <= "17":
+    raise NameError("Je bent nog een baby HAHA!!")
 
 dierendressuur = int(input("Hoeveel jaar heeft u ervaring met dieren dressuur? " ))
+if dierendressuur == "34":
+    raise NameError("Jij bent echt niet tof")
 jongleren = int(input("Hoeveel jaar heeft u ervaring met jongleren? " ))    
 acrobatiek = int(input("Hoeveel jaar heeft u ervaring met acrobatiek? ")) 
 
