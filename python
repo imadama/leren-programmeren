@@ -1,0 +1,4 @@
+try:
+    smallpizza = input("Hoeveel Small pizza's wilt u?:")
+except ValueError:
+    print("Oops!  That was no valid number.  Try again...")
