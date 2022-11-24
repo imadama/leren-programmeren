@@ -28,12 +28,12 @@ while ronde < AantalRondes:
         poging-=1
         print(f"Ronde: {ronde}")
 
-        print(f"punt(en):{punten}") #geeft aan hoeveel punten je heb
-        ronde +=1 #telt een ronde op
-        print(f"Ronde: {ronde}") #laat zien hoeveel ronde's je heb gehad
+        print(f"punt(en):{punten}") 
+        ronde +=1 
+        print(f"Ronde: {ronde}") 
         
         if ronde == 10: 
-            rondeMAX = input("U heeft nu 10 rondes gehad. Wilt u nog verder?")#als je 10 rondes heb gehad vraagt het programma of je nog door wil
+            rondeMAX = input("U heeft nu 10 rondes gehad. Wilt u nog verder?")
             if rondeMAX == "nee":
                 exit()#als je nee zegt dan stopt het programma, anders gaat hij verder
             elif ronde == AantalRondes:
