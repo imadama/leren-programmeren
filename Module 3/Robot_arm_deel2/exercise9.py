@@ -16,7 +16,7 @@ for y in range(0,4):
         for y in range(0,5):
             robotArm.moveLeft()
     robotArm.moveRight()
-    x+=1   #telt na deze hele loop 1 bij de x op, zodat hij bij de volgende kolom 2 blokjes pakt etc. 
+    x+=1   
 
 # Na jouw code wachten tot het sluiten van de window:
 robotArm.wait()

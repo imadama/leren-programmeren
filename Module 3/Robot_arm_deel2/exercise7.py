@@ -4,7 +4,7 @@ robotArm.speed = 4
 # Jouw python instructies zet je vanaf hier:
 for x in range(0,6):
     robotArm.moveRight()
-    for y in range(0,6):
+    for x in range(0,6):
         robotArm.grab()
         robotArm.moveLeft()
         robotArm.drop()
