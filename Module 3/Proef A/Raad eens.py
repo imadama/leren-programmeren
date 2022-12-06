@@ -4,7 +4,7 @@ punten = 0
 ronde = 0
 
 while ronde < AantalRondes:
-    getal = random.randint(0, 1000) 
+    getal = random.randint(0, 11) 
     print("Hallo welkom bij het raden van het getal!")
     print("De game kiest een getal tussen 1 en 1000 uit, jij moet kiezen wat het getal is.")
     print("Je hebt 10 pogingen om te raden.")
@@ -20,10 +20,14 @@ while ronde < AantalRondes:
         if keuze == getal:
             print("Gefeliciteerd, je hebt het getal goed geraden!!")
             punten+=1
-            break
-        if (getal - keuze) <= 20:
+            again = input("Wil u nog een ronde spelen? YES/NO:")
+            if again == "yes":
+                break
+            elif again == "no":
+                quit()
+        if (abs(getal - keuze)) <= 20:
             print("Je bent heel warm")
-        elif (getal - keuze) <= 50:
+        elif (abs(getal - keuze)) <= 50:
             print("Je bent warm")
         poging-=1
         print(f"Ronde: {ronde}")
