@@ -1,19 +1,16 @@
 boodschappenlijst = {}
-opnieuw = True
-while opnieuw == True:
-    vrg = input('Wilt u iets toevoegen? ja/nee : ').capitalize()
-    if vrg == 'Ja':
-        product = input('Wat wilt u toevoegen : ').capitalize()
-        aantal = int(input('Hoeveel '+ product +' Wilt u? : '))
-        if product in boodschappenlijst.keys():
-            boodschappenlijst[product] += (aantal)
-        else:
-            boodschappenlijst[product] = aantal
-        print(boodschappenlijst)
+door = "ja"
+while door == "ja":
+    product = input("Welke product wil je toevoegen aan uw boodschappenlijst?: ").capitalize()
+    aantal = int(input(f"Hoeveel {product} wil je?: "))
+    
+    if product not in boodschappenlijst:
+        boodschappenlijst.update({product: aantal})    
+    
     else:
-        print('-[ BOODSCHAPPENLIJST ]-')
-        print('')
-        print(boodschappenlijst)
-        opnieuw = False
-        print('')
-        print('-----------------------')
+        boodschappenlijst[product] += aantal
+    door = input("Wil je nog een product toevoegen?: ").lower()
+print("-----------------")
+print("BOODSCHAPPENLIJST")
+for aantal, product in boodschappenlijst.items():
+    print(f"{product} x {aantal}")
