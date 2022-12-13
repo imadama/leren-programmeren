@@ -1,4 +1,3 @@
-
 dagen = ("maandag", "dindsdag", "woensdag", "donderdag", "vrijdag", "zaterdag", "zondag")
 
 print(dagen)
