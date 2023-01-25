@@ -1,0 +1,22 @@
+# Maak een lege lijst "namen_lijst"
+
+# Herhaal zolang de lengte van "namen_lijst" kleiner is dan 3:
+#     Vraag de gebruiker om een naam toe te voegen
+#     Als de ingevoerde naam al in "namen_lijst" zit:
+#         Geef aan dat de naam al bestaat
+#     Anders:
+#         Voeg de ingevoerde naam toe aan "namen_lijst"
+
+# Herhaal voor oneindige keer:
+#     Vraag de gebruiker om een naam toe te voegen
+#     Als de ingevoerde naam "quit" is:
+#         Stop de herhaling
+#     Als de ingevoerde naam al in "namen_lijst" zit:
+#         Geef aan dat de naam al bestaat
+#     Anders:
+#         Voeg de ingevoerde naam toe aan "namen_lijst"
+
+# Maak een kopie van de lijst "namen_lijst" genaamd "geschudde_namen"
+# Schud "geschudde_namen"
+# Herhaal voor elk item in "geschudde_namen":
+#     Print de huidige naam en de naam die voorafgaat aan de huidige naam
