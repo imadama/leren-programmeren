@@ -1,4 +1,3 @@
-#from operator import truediv
 restart = True
 print("Welkom bij de quiz van hoofdsteden van alle landen!\n")
 score = 0
