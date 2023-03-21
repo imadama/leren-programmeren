@@ -1,8 +1,13 @@
 import time
+import math
 from termcolor import colored
 from data import JOURNEY_IN_DAYS
 from data import COST_FOOD_HORSE_COPPER_PER_DAY
 from data import COST_FOOD_HUMAN_COPPER_PER_DAY
+from data import COST_HORSE_SILVER_PER_DAY
+from data import COST_TENT_GOLD_PER_WEEK
+from data import COST_INN_HORSE_COPPER_PER_NIGHT
+from data import COST_INN_HUMAN_SILVER_PER_NIGHT
 
 ##################### M04.D02.O2 #####################
 
@@ -33,67 +38,136 @@ def getJourneyFoodCostsInGold(people:int, horses:int) -> float:
 ##################### M04.D02.O5 #####################
 
 def getFromListByKeyIs(list:list, key:str, value:any) -> list:
-    pass
+    lijst = []
+    for x in range(len(list)):
+        if list[x][key] == value:
+            lijst.append(list[x])
+    return lijst
 
 def getAdventuringPeople(people:list) -> list:
-    pass
+    return getFromListByKeyIs(people, "adventuring", True)
 
-def getShareWithFriends(friends:list) -> int:
-    pass
+def getShareWithFriends(friends:list) -> list:
+    return getFromListByKeyIs(friends, "shareWith", True)
 
 def getAdventuringFriends(friends:list) -> list:
-    pass
+    adventurefriends = []
+    adventure = getAdventuringPeople(friends)
+    share = getShareWithFriends(friends)
+
+    for x in range(len(adventure)):
+
+        if share[x] in adventure:
+            adventurefriends.append(share[x])
+    return adventurefriends
 
 ##################### M04.D02.O6 #####################
 
 def getNumberOfHorsesNeeded(people:int) -> int:
-    pass
-
+    return math.ceil(people / 2)
 def getNumberOfTentsNeeded(people:int) -> int:
-    pass
+    return math.ceil(people / 3)
 
 def getTotalRentalCost(horses:int, tents:int) -> float:
-    pass
+    return (horses * silver2gold(COST_HORSE_SILVER_PER_DAY) * JOURNEY_IN_DAYS) + (tents * (COST_TENT_GOLD_PER_WEEK * math.ceil(JOURNEY_IN_DAYS / 7)) )
 
 ##################### M04.D02.O7 #####################
 
 def getItemsAsText(items:list) -> str:
-    pass
+    converted= ""
+    for key in range (len(items)):
+        amount = str(items[key]['amount'])
+        converted += amount + items[key]['unit'] + " " + items[key]['name']
+        if key < len(items) -1:
+            converted += ', '
+    return(converted)
 
 def getItemsValueInGold(items:list) -> float:
-    pass
-
+    value= 0
+    for key in range (len(items)):
+        if items[key]['price']['type'] =='gold':
+            amount = items[key]['price']['amount'] * items[key]['amount']
+            value += amount
+        elif items[key]['price']['type'] =='copper':
+            amount = copper2gold( items[key]['price']['amount']) * items[key]['amount']
+            value += amount
+        elif items[key]['price']['type'] =='silver':
+            amount = silver2gold (items[key]['price']['amount']) * items[key]['amount']
+            value += amount
+        elif items[key]['price']['type'] =='platinum':
+            amount =  platinum2gold(items[key]['price']['amount']) * items[key]['amount']
+            value += amount
+        totaal = round(value,2)
+    return totaal
 ##################### M04.D02.O8 #####################
 
 def getCashInGoldFromPeople(people:list) -> float:
-    pass
+    value= 0
+    for key in range (len(people)):
+        amount = people[key]['cash']['gold']
+        value += amount
+        amount = copper2gold( people[key]['cash']['copper']) 
+        value += amount
+        amount = silver2gold (people[key]['cash']['silver']) 
+        value += amount
+        amount =  platinum2gold(people[key]['cash']['platinum'])
+        value += amount
+    totaal = round(value,2)
+    return totaal
 
 ##################### M04.D02.O9 #####################
 
 def getInterestingInvestors(investors:list) -> list:
-    pass
+    InterestingInvestors = []
+    for index in range(0,len(investors)):    
+        if investors[index]['profitReturn'] <= 10:
+            InterestingInvestors.append(investors[index])
+    return InterestingInvestors
 
 def getAdventuringInvestors(investors:list) -> list:
-    pass
+    adventuringInvestors= []
+    for index in range (len(getInterestingInvestors(investors))):
+        if getInterestingInvestors(investors)[index]['adventuring'] == True :
+            adventuringInvestors.append(getInterestingInvestors(investors)[index])
+    return adventuringInvestors
 
 def getTotalInvestorsCosts(investors:list, gear:list) -> float:
-    pass
+    people= getAdventuringInvestors(investors)
+    rentalCost = getTotalRentalCost(1,1)
+    foodCost = getJourneyFoodCostsInGold(1,1)
+    totaal = (getItemsValueInGold(gear)  + rentalCost + foodCost) * len(people)
+    return totaal
 
 ##################### M04.D02.O10 #####################
 
 def getMaxAmountOfNightsInInn(leftoverGold:float, people:int, horses:int) -> int:
-    pass
+    people_cost = silver2gold(COST_INN_HUMAN_SILVER_PER_NIGHT) * people
+    horses_cost  = copper2gold(COST_INN_HORSE_COPPER_PER_NIGHT) * horses
+    herberg_cost = people_cost  + horses_cost
+    maxNachten = math.floor(leftoverGold / herberg_cost)
+    return maxNachten
 
 def getJourneyInnCostsInGold(nightsInInn:int, people:int, horses:int) -> float:
-    pass
+    people_cost = silver2gold(COST_INN_HUMAN_SILVER_PER_NIGHT) * people
+    horses_cost  = copper2gold(COST_INN_HORSE_COPPER_PER_NIGHT) * horses
+    herberg_cost = round(nightsInInn * (people_cost + horses_cost) , 2)
+    return herberg_cost
 
 ##################### M04.D02.O12 #####################
 
 def getInvestorsCuts(profitGold:float, investors:list) -> list:
-    pass
+    goldList = []
+    AdventuringInvestors = getInterestingInvestors(investors)
+    for teller in range (len(AdventuringInvestors)):
+        investorsCuts = round(profitGold / 100 * AdventuringInvestors[teller][ 'profitReturn'] , 2)
+        goldList.append(investorsCuts)
+    return goldList
 
-def getAdventurerCut(profitGold:float, investorsCuts:list, fellowship:int) -> float:
-    pass
+def getAdventurerCut(profitGold:float, investorsCuts:list, fellowship:list) -> float:
+    for gold in investorsCuts:
+        profitGold -= gold
+    adventurCut = round(profitGold / fellowship ,2)
+    return adventurCut
 
 ##################### M04.D02.O13 #####################
 
