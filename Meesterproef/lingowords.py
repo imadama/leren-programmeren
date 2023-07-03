@@ -482,6 +482,6 @@
 
 words = [
 	"appel",
-	"beer",
-	"bier",
+	"bever",
+	"zaken",
 ]
